@@ -1,0 +1,18 @@
+virt-install                    \
+     --connect=qemu:///system   \
+     --name=f5               \
+     --os-type=linux            \
+     --os-variant=rhel7.3       \
+     --arch=x86_64              \
+     --cpu host                 \
+     --vcpus=1,sockets=1,cores=0,threads=0   \
+     --hvm                      \
+     --ram=4096                 \
+     --import                   \
+     --disk path=/var/lib/libvirt/images/BIGIP-13.1.0.0.0.1868.qcow2,device=disk,bus=virtio,cache=writethrough \
+     --network network=default,model=virtio \
+     --network network=default,model=virtio \
+     --network bridge=virbr0,model=virtio \
+     --watchdog i6300esb,action=reset \
+     --console pty,target_type=virtio \
+     --serial tcp,host=127.0.0.1:4554,mode=bind,protocol=telnet
