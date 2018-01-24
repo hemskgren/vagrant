@@ -1,0 +1,17 @@
+virt-install                    \
+     --connect=qemu:///system   \
+     --name=fortigate           \
+     --os-type=linux            \
+     --os-variant=generic       \
+     --arch=x86_64              \
+     --cpu host                 \
+     --vcpus=1,sockets=1,cores=0,threads=0   \
+     --hvm                      \
+     --ram=1024                 \
+     --import                   \
+     --disk path=/var/lib/libvirt/images/fortios.qcow2,device=disk,bus=virtio,cache=writethrough \
+     --network network=default,model=virtio \
+     --network network=default,model=virtio \
+     --network network=default,model=virtio \
+     --console pty,target_type=virtio \
+     --serial tcp,host=127.0.0.1:4555,mode=bind,protocol=telnet
