@@ -1,0 +1,20 @@
+virt-install \
+	--connect=qemu:///system \
+	--network network=default,model=virtio \
+	--network network=default,model=virtio \
+	--network network=default,model=virtio \
+	--name=asav \
+	--cpu host \
+	--arch=x86_64 \
+	--vcpus=1 \
+	--ram=1500 \
+	--os-type=linux \
+	--os-variant=generic \
+	--noacpi \
+	--virt-type=kvm \
+	--import \
+        --disk path=/var/lib/libvirt/images/asav991.qcow2,format=qcow2,device=disk,bus=virtio,cache=writethrough \
+        --disk path=/var/lib/libvirt/boot/day0/day0.iso,format=iso,device=cdrom \
+        --watchdog i6300esb,action=reset \
+	--console pty,target_type=virtio \
+	--serial tcp,host=127.0.0.1:4554,mode=bind,protocol=telnet
